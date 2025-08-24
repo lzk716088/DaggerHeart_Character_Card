@@ -1,0 +1,103 @@
+
+
+/* --- Skill Card Styles --- */
+#card-container {
+    position: absolute;
+    top: 0px;
+    left: 1000px;
+    width: 1px; /* 设置为1px宽度 */
+    height: 1px; /* 设置为1px高度 */
+    z-index: 10;
+    overflow: visible; /* 确保拖出容器的卡片可见 */
+}
+
+.skill-card {
+    width: 300px;
+    height: 420px;
+    position: absolute;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    background-color: white;
+    border: 1px solid #ccc;
+    z-index: 11;
+}
+
+.card-content {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.card-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-content textarea {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border: none;
+    resize: none;
+}
+
+.close-card {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    cursor: pointer;
+    font-size: 16px; /* Adjusted for better fit */
+    color: white;
+    z-index: 12;
+    background-color: rgba(100, 100, 100, 0.8); /* Semi-transparent grey */
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    line-height: 1; /* Ensure text is vertically centered */
+}
+
+
+/* --- JSON Card Content Styles --- */
+.card-title-json {
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.2em;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.card-tags-container {
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.card-tag {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 2px 8px;
+    font-size: 0.8em;
+    white-space: nowrap;
+}
+
+.card-description-json {
+    padding: 10px;
+    font-size: 0.9em;
+    white-space: pre-wrap; /* Respect newlines */
+    overflow-y: auto;
+    height: calc(100% - 100px); /* Adjust based on title/tags height */
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}

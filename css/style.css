@@ -1,0 +1,158 @@
+body {
+    position: relative; /* 保持，因为子元素使用了绝对定位 */
+    margin: 0;
+    padding: 0;
+}
+
+/* 角色卡的CSS */
+.image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.image-container img {
+    display: block;
+    width: 1000px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.page-container {
+    position: relative;
+    width: 1000px;
+}
+
+/* Action Container for buttons */
+#action-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#action-container button {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: '黑体', 'HeiTi', serif;
+}
+
+#action-container button:hover {
+    background-color: #e0e0e0;
+}
+
+/* --- Tooltip Styles --- */
+.tooltip {
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 14px;
+    z-index: 1010;
+    pointer-events: none;
+    white-space: pre-wrap;
+    max-width: 300px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.tooltip.visible {
+    opacity: 1;
+}
+
+/* --- NEW PRINT STYLES --- */
+@media print {
+    @page {
+        margin: 0;
+        size: A4;
+    }
+
+    /* Hide everything in the body except our dedicated print area */
+    body > *:not(#print-area) {
+        display: none !important;
+    }
+
+    /* Make the print area visible and take up the full space */
+    #print-area {
+        display: block !important;
+    }
+
+    /* Ensure each major section in the print area starts on a new page */
+    #print-area > .print-section {
+        page-break-after: always;
+        position: relative;
+    }
+    
+        /* Do not break page after the last section */
+        #print-area > .print-section:last-child {
+            page-break-after: avoid;
+        }
+
+    /* Style for the character sheet images */
+    .print-character-sheet {
+        transform: scale(1.2);
+        transform-origin: top left;
+        width: 83.33%; /* 100 / 1.2 */
+    }
+    .print-character-sheet img {
+        width: 100%;
+        height: auto;
+    }
+    
+    /* Grid container for the cards */
+    .print-card-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    /* Ensure individual cards do not break across pages */
+    .print-card-container .skill-card {
+        page-break-inside: avoid;
+        border: 1px solid #000;
+        box-shadow: none;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 300 / 420;
+        position: static !important; /* Override absolute positioning */
+    }
+
+    /* Styles for the h3 text container */
+    .print-h3-container {
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .print-h3-container .h3-print-item {
+        page-break-inside: avoid;
+        margin-bottom: 1em;
+        padding-bottom: 0.5em;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .print-h3-container .h3-print-item h3 {
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-bottom: 0.5em;
+    }
+
+    .print-h3-container .h3-print-item p {
+        font-size: 1em;
+        white-space: pre-wrap;
+    }
+    
+    /* Ensure text and checkboxes are printed correctly */
+    .base-textbox, .print-replacement, .base-checkbox {
+        -webkit-print-color-adjust: exact !important;
+        color-adjust: exact !important;
+    }
+}
